@@ -18,7 +18,7 @@ new Vue({
 Vue.use(Vuetify, {
   iconfont: 'mdi',
   theme: {
-    primary: colors.purple,
+    primary: colors.blue.darken3,
     secondary: colors.grey.darken1,
     accent: colors.shades.black,
     error: colors.red.accent3

@@ -2,7 +2,7 @@
 
 <template lang="pug">
   v-app(light)
-    v-navigation-drawer(app fixed :clipped='$vuetify.breakpoint.smAndUp' v-model='drawer', :mini-variant.sync='mini' enable-resize-watcher dark class="primary darken-3")
+    v-navigation-drawer(app extended enable-resize-watcher dark class="primary darken-3" :clipped='$vuetify.breakpoint.smAndUp' v-model='drawer', :mini-variant.sync='mini')
       v-list(dense).mt-0.pt-0
         v-divider.mt-0(dark)
         v-list-tile(to='/' @click.stop='mini = !mini').white--text.text--darken-1
@@ -28,17 +28,28 @@
               v-list-tile-title.white--text
                 | {{ item.text }}
 
-    v-toolbar#main-toolbar(app fixed clipped-left dense dark class="primary darken-3")
+    v-toolbar#main-toolbar(app fixed clipped-left dark class="primary darken-3")
       v-toolbar-side-icon(@click.stop='drawer = !drawer')
         v-icon menu
       v-toolbar-title#title_bar
         | JAN-PRO
+      v-spacer
+    
+      v-btn(icon)
+        v-icon search
+      v-btn(icon)
+        v-icon apps
+    
+      v-btn(icon)
+        v-icon refresh
 
     v-content
       router-view
 
-    v-footer(app fixed dark)
+    v-footer(app fixed dark class="primary darken-3")
       v-spacer
+      v-icon copyright 
+      | JAN-PRO, Franchising, LLC
       span {{ new Date().getFullYear() }}
       v-spacer
 </template>
