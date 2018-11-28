@@ -55,7 +55,7 @@
 </template>
 
 <script>
-// import HelloWorld from './components/HelloWorld'
+// import ApolloExample from './components/ApolloExample'
 
 export default {
   name: 'App',

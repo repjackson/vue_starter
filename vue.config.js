@@ -1,6 +1,13 @@
 module.exports = {
-devServer: {
-disableHostCheck: true
-}
+  devServer: {
+  disableHostCheck: true
+  },
+
+  pluginOptions: {
+    apollo: {
+      enableMocks: true,
+      enableEngine: true
+    }
+  }
 }
 
