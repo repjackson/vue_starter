@@ -1,4 +1,5 @@
 <template>
+
   <v-container>
     <v-layout
       text-xs-center
@@ -12,6 +13,7 @@
           height="200"
         ></v-img>
       </v-flex>
+      <v-navigation-drawer app></v-navigation-drawer>
 
       <v-flex mb-4>
         <h1 class="display-2 font-weight-bold mb-3">
