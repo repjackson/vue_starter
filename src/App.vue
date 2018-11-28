@@ -2,7 +2,7 @@
 
 <template lang="pug">
   v-app(light)
-    v-navigation-drawer(app extended enable-resize-watcher dark class="primary darken-3" :clipped='$vuetify.breakpoint.smAndUp' v-model='drawer', :mini-variant.sync='mini')
+    v-navigation-drawer(app extended dark class="primary darken-3" :clipped='$vuetify.breakpoint.smAndUp' v-model='drawer', :mini-variant.sync='mini')
       v-list(dense).mt-0.pt-0
         v-divider.mt-0(dark)
         v-list-tile(to='/' @click.stop='mini = !mini').white--text.text--darken-1
@@ -134,6 +134,7 @@ export default {
           ]
         },
         { pic: 'view_list', text: 'Todo', link: '/todo' },
+        { pic: 'sun', text: 'Apollo', link: '/apollo' },
         { pic: 'person', text: 'Profile', link: '/profile' },
         { pic: 'book', text: 'User Guide', link: '/guide' },
         { pic: 'power_settings_new', text: 'Sign Out', link: '/sign-out' }
