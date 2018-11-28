@@ -120,6 +120,7 @@ export default {
           ]
         },
         { pic: 'fa-code-fork', text: 'Test', link: '/test' },
+        { pic: 'fa-task', text: 'Todo', link: '/todo' },
         { pic: 'fa-user', text: 'Profile', link: '/profile' },
         { pic: 'fa-book', text: 'User Guide', link: '/guide' }
       ]
