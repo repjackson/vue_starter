@@ -1,35 +1,38 @@
 /* eslint-disable */ 
 
 <template lang="pug">
-  v-app(dark)
-    v-navigation-drawer(app fixed :clipped='$vuetify.breakpoint.smAndUp' v-model='drawer', :mini-variant.sync='mini')
+  v-app(light)
+    v-navigation-drawer(app fixed :clipped='$vuetify.breakpoint.smAndUp' v-model='drawer', :mini-variant.sync='mini' enable-resize-watcher dark class="primary darken-3")
       v-list(dense).mt-0.pt-0
         v-divider.mt-0(dark)
-        v-list-tile(to='/' @click.stop='mini = !mini').grey--text.text--darken-1
+        v-list-tile(to='/' @click.stop='mini = !mini').white--text.text--darken-1
           v-list-tile-action#home
-            v-icon#home_icon.grey--text fa-home
+            v-icon#home_icon.white--text home
+
           v-list-tile-content
-            v-list-tile-title.grey--text.text--darken-1 Home
+            v-list-tile-title.white--text.text--darken-1 Home
           v-icon(icon v-if='!mini') chevron_left
         v-divider.mt-0(dark)
         template(v-for='(item, i) in items')
           v-list-group(v-if='item.children' v-model='item.model' :key='item.text' :prepend-icon='item.pic')
             v-list-tile(slot='activator' ripple)
               v-list-tile-content
-                v-list-tile-title.grey--text {{ item.text }}
+                v-list-tile-title.white--text {{ item.text }}
             v-list-tile(v-for='(child, i) in item.children' :key='i' :to='{path: child.link}')
               v-list-tile-content
-                v-list-tile-title.blue-grey--text {{ child.text }}
+                v-list-tile-title.blue-white--text {{ child.text }}
           v-list-tile(v-else :key='item.text' :to='{path: item.link}')
             v-list-tile-action(v-if='item.pic')
               v-icon {{ item.pic }}
             v-list-tile-content
-              v-list-tile-title.grey--text
+              v-list-tile-title.white--text
                 | {{ item.text }}
 
-    v-toolbar#main-toolbar(app fixed clipped-left dense dark)
+    v-toolbar#main-toolbar(app fixed clipped-left dense dark class="primary darken-3")
       v-toolbar-side-icon(@click.stop='drawer = !drawer')
+        v-icon menu
       v-toolbar-title#title_bar
+        | JAN-PRO
 
     v-content
       router-view
@@ -48,11 +51,11 @@ export default {
   components: {
   },
   data: () => ({
-    drawer:true,
-    mini:false,
+    drawer: false,
+    mini: false,
     items: [
         {
-          pic: 'fa-id-card',
+          pic: 'supervised_user_circle',
           text: 'Human Resources',
           model: false,
           children: [
@@ -64,7 +67,7 @@ export default {
           ]
         },
         {
-          pic: 'fa-balance-scale',
+          pic: 'linear_scale',
           text: 'Operations',
           model: false,
           children: [
@@ -77,7 +80,7 @@ export default {
           ]
         },
         {
-          pic: 'fa-usd',
+          pic: 'attach_money',
           text: 'Finance',
           model: false,
           children: [
@@ -87,7 +90,7 @@ export default {
           ]
         },
         {
-          pic: 'fa-line-chart',
+          pic: 'show_chart',
           text: 'Reports',
           model: false,
           children: [
@@ -102,7 +105,7 @@ export default {
           ]
         },
         {
-          pic: 'fa-shopping-cart',
+          pic: 'shopping_cart',
           text: 'Store',
           model: false,
           children: [
@@ -111,7 +114,7 @@ export default {
           ]
         },
         {
-          pic: 'fa-cog',
+          pic: 'settings',
           text: 'Administration',
           model: false,
           children: [
@@ -119,10 +122,10 @@ export default {
             { text: 'System Log', link: '/admin/systemlog' }
           ]
         },
-        { pic: 'fa-code-fork', text: 'Test', link: '/test' },
-        { pic: 'fa-task', text: 'Todo', link: '/todo' },
-        { pic: 'fa-user', text: 'Profile', link: '/profile' },
-        { pic: 'fa-book', text: 'User Guide', link: '/guide' }
+        { pic: 'view_list', text: 'Todo', link: '/todo' },
+        { pic: 'person', text: 'Profile', link: '/profile' },
+        { pic: 'book', text: 'User Guide', link: '/guide' },
+        { pic: 'power_settings_new', text: 'Sign Out', link: '/sign-out' }
       ]
     
   }),
