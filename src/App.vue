@@ -15,7 +15,7 @@
         v-divider.mt-0(dark)
         template(v-for='(item, i) in items')
           v-list-group(v-if='item.children' v-model='item.model' :key='item.text' :prepend-icon='item.pic')
-            v-list-tile(slot='activator' ripple)
+            v-list-tile(slot='activator')
               v-list-tile-content
                 v-list-tile-title.white--text {{ item.text }}
             v-list-tile(v-for='(child, i) in item.children' :key='i' :to='{path: child.link}')
@@ -31,8 +31,23 @@
     v-toolbar#main-toolbar(app fixed clipped-left dark class="primary darken-3")
       v-toolbar-side-icon(@click.stop='drawer = !drawer')
         v-icon menu
-      v-toolbar-title#title_bar
-        | JAN-PRO
+      v-img(src="https://jan-pro.com/wp-content/themes/underboot/img/jan-pro-white.svg" aspect-ratio="1" contain)
+      v-btn(icon)
+        v-icon calendar_today
+      v-btn(icon)
+        v-icon people
+      v-btn(icon)
+        v-icon attach_money
+      v-btn(icon)
+        v-icon list
+      v-btn(icon)
+        v-icon shopping_cart
+      v-btn(icon)
+        v-icon headset
+      v-btn(icon)
+        v-icon mail
+      v-btn(icon)
+        v-icon notifications
       v-spacer
     
       v-btn(icon)
@@ -132,7 +147,6 @@ export default {
           ]
         },
         { pic: 'view_list', text: 'Todo', link: '/todo' },
-        { pic: 'sun', text: 'Apollo', link: '/apollo' },
         { pic: 'person', text: 'Profile', link: '/profile' },
         { pic: 'book', text: 'User Guide', link: '/guide' },
         { pic: 'power_settings_new', text: 'Sign Out', link: '/sign-out' }
