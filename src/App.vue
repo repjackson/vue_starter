@@ -2,86 +2,93 @@
 
 <template lang="pug">
   v-app(light)
-    v-container
-      v-navigation-drawer(app extended dark class="primary darken-3" :clipped='$vuetify.breakpoint.smAndUp' v-model='drawer', :mini-variant.sync='mini')
-        v-list(dense).mt-0.pt-0
-          v-divider.mt-0(dark)
-          v-list-tile(to='/' @click.stop='mini = !mini').white--text.text--darken-1
-            v-list-tile-action#home
-              v-icon#home_icon.white--text home
-            v-list-tile-content
-              v-list-tile-title.white--text.text--darken-1 Home
-            v-icon(icon v-if='!mini') chevron_left
-          v-divider.mt-0(dark)
-          template(v-for='(item, i) in items')
-            v-list-group(v-if='item.children' v-model='item.model' :key='item.text' :prepend-icon='item.pic')
-              v-list-tile(slot='activator')
-                v-list-tile-content
-                  v-list-tile-title.white--text {{ item.text }}
-              v-list-tile(v-for='(child, i) in item.children' :key='i' :to='{path: child.link}')
-                v-list-tile-content
-                  v-list-tile-title.blue-white--text {{ child.text }}
-            v-list-tile(v-else :key='item.text' :to='{path: item.link}')
-              v-list-tile-action(v-if='item.pic')
-                v-icon {{ item.pic }}
+    v-navigation-drawer(app extended dark class="primary darken-3" :clipped='$vuetify.breakpoint.smAndUp' v-model='drawer', :mini-variant.sync='mini')
+      v-list(dense).mt-0.pt-0
+        v-divider.mt-0(dark)
+        v-list-tile(to='/' @click.stop='mini = !mini').white--text.text--darken-1
+          v-list-tile-action#home
+            v-icon#home_icon.white--text home
+          v-list-tile-content
+            v-list-tile-title.white--text.text--darken-1 Home
+          v-icon(icon v-if='!mini') chevron_left
+        v-divider.mt-0(dark)
+        template(v-for='(item, i) in items')
+          v-list-group(v-if='item.children' v-model='item.model' :key='item.text' :prepend-icon='item.pic')
+            v-list-tile(slot='activator')
               v-list-tile-content
-                v-list-tile-title.white--text
-                  | {{ item.text }}
-
-      v-toolbar#main-toolbar(app fixed clipped-left dark class="primary darken-3")
-        v-toolbar-side-icon(@click.stop='drawer = !drawer')
-          v-icon menu
-        v-img(src="https://jan-pro.com/wp-content/themes/underboot/img/jan-pro-white.svg" aspect-ratio="1" contain @click.stop='drawer = !drawer')
-        v-btn(icon)
-          v-icon calendar_today
-        v-btn(icon)
-          v-icon people
-        v-btn(icon)
-          v-icon attach_money
-        v-btn(icon)
-          v-icon list
-        v-btn(icon)
-          v-icon shopping_cart
-        v-btn(icon)
-          v-icon headset
-        v-btn(icon)
-          v-icon mail
-        v-btn(icon)
-          v-icon notifications
-        v-spacer
-      
-        v-btn(icon)
-          v-icon search
-        v-btn(icon)
-          v-icon apps
-        v-toolbar-side-icon(@click.stop='drawer_right = !drawer_right')
-          v-icon menu
-
-      v-navigation-drawer(temporary v-model="left" fixed)
-      v-navigation-drawer(temporary v-model="right" right clipped fixed)
-  
-      v-navigation-drawer(fixed v-model="drawer_right" right clipped app)
-        v-list(dense)
-          v-list-tile(@click.stop="right = !right")
-            v-list-tile-action
-              v-icon exit_to_app
+                v-list-tile-title.white--text {{ item.text }}
+            v-list-tile(v-for='(child, i) in item.children' :key='i' :to='{path: child.link}')
+              v-list-tile-content
+                v-list-tile-title.blue-white--text {{ child.text }}
+          v-list-tile(v-else :key='item.text' :to='{path: item.link}')
+            v-list-tile-action(v-if='item.pic')
+              v-icon {{ item.pic }}
             v-list-tile-content
-              v-list-tile-title Open Temporary Drawer
+              v-list-tile-title.white--text
+                | {{ item.text }}
 
-      v-content
-        router-view
+    v-toolbar#main-toolbar(app fixed clipped-left dark class="primary darken-3")
+      v-toolbar-side-icon(@click.stop='drawer = !drawer')
+        v-icon menu
+      v-img(src="https://jan-pro.com/wp-content/themes/underboot/img/jan-pro-white.svg" aspect-ratio="1" contain @click.stop='drawer = !drawer')
+      v-btn(icon)
+        v-icon calendar_today
+      v-btn(icon)
+        v-icon people
+      v-btn(icon)
+        v-icon attach_money
+      v-btn(icon)
+        v-icon list
+      v-btn(icon)
+        v-icon shopping_cart
+      v-btn(icon)
+        v-icon headset
+      v-btn(icon)
+        v-icon mail
+      v-btn(icon)
+        v-icon notifications
+      v-spacer
+    
+      v-btn(icon)
+        v-icon search
+      v-btn(icon)
+        v-icon apps
+      v-toolbar-side-icon(@click.stop='drawer_right = !drawer_right')
+        v-icon menu
+
+    v-navigation-drawer(temporary v-model="left" fixed)
+    v-navigation-drawer(temporary v-model="right" right clipped fixed)
+    v-navigation-drawer(fixed v-model="drawer_right" right clipped app)
+      v-list(dense)
+        v-list-tile(@click.stop="right = !right")
+          v-list-tile-action
+            v-icon exit_to_app
+          v-list-tile-content
+            v-list-tile-title Open Temporary Drawer
+  
+    v-container(fluid grid-list-lg)
+      v-layout(row wrap)
+        v-content
+          v-flex
+            router-view
+            v-btn(absolute='' dark='' fab='' top='' right='' color='pink')
+              v-icon add
+            v-speed-dial(v-model='fab' :top='top' :bottom='bottom' :right='right' :left='left' :direction='direction' :open-on-hover='hover' :transition='transition')
+              v-btn(slot='activator' v-model='fab' color='blue darken-2' dark='' fab='')
+                v-icon account_circle
+                v-icon close
+              v-btn(fab='' dark='' small='' color='green')
+                v-icon edit
+              v-btn(fab='' dark='' small='' color='indigo')
+                v-icon add
+              v-btn(fab='' dark='' small='' color='red')
+                v-icon delete
+          
+          
+          
+          
   
   
-      v-speed-dial(v-model='fab' :top='top' :bottom='bottom' :right='right' :left='left' :direction='direction' :open-on-hover='hover' :transition='transition')
-        v-btn(slot='activator' v-model='fab' color='blue darken-2' dark='' fab='')
-          v-icon account_circle
-          v-icon close
-        v-btn(fab='' dark='' small='' color='green')
-          v-icon edit
-        v-btn(fab='' dark='' small='' color='indigo')
-          v-icon add
-        v-btn(fab='' dark='' small='' color='red')
-          v-icon delete
 
 
 
