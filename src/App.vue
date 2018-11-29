@@ -55,8 +55,6 @@
 </template>
 
 <script>
-// import ApolloExample from './components/ApolloExample'
-
 export default {
   name: 'App',
   components: {

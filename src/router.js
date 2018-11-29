@@ -2,7 +2,6 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Home from './views/Home.vue'
 import Todo from './components/Todo.vue'
-import ApolloExample from './components/ApolloExample.vue'
 
 Vue.use(Router)
 
@@ -19,11 +18,6 @@ export default new Router({
       path: '/todo',
       name: 'todo',
       component: Todo
-    },
-    {
-      path: '/apollo',
-      name: 'apollo',
-      component: ApolloExample
     },
     {
       path: '/about',
