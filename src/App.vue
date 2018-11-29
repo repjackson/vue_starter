@@ -73,7 +73,7 @@
             router-view
             v-btn(absolute='' dark='' fab='' top='' right='' color='pink')
               v-icon add
-            v-speed-dial(v-model='fab' :top='top' :bottom='bottom' :right='right' :left='left' :direction='direction' :open-on-hover='hover' :transition='transition')
+            v-speed-dial(v-model='fab' top=false bottom=true right=true left=false direction='top' open-on-hover=false transition='scale')
               v-btn(slot='activator' v-model='fab' color='blue darken-2' dark='' fab='')
                 v-icon account_circle
                 v-icon close
@@ -84,20 +84,41 @@
               v-btn(fab='' dark='' small='' color='red')
                 v-icon delete
           
-          
-          
-          
-  
-  
+    vue-accordion
+      vue-accordion-item(title='Item 1' :initopen='true')
+        | Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut
+        | labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores
+        | et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+        | Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut
+        | labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores
+        | et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+      vue-accordion-item(title='Item 2')
+        | et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+        | Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut
+        | labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores
+        | et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+
+    v-bottom-nav(:active.sync='bottomNav' :color='color' :value='true' absolute='' shift='')
+      v-btn(dark='')
+        span Video
+        v-icon ondemand_video
+      v-btn(dark='')
+        span Music
+        v-icon music_note
+      v-btn(dark='')
+        span Book
+        v-icon book
+      v-btn(dark='')
+        span Image
+        v-icon image
 
 
-
-    v-footer(app fixed dark class="primary darken-3")
-      v-spacer
-      v-icon copyright 
-      | JAN-PRO, Franchising, LLC
-      span {{ new Date().getFullYear() }}
-      v-spacer
+    <!--v-footer(app fixed dark class="primary darken-3")-->
+    <!--  v-spacer-->
+    <!--  v-icon copyright -->
+    <!--  | JAN-PRO, Franchising, LLC-->
+    <!--  span {{ new Date().getFullYear() }}-->
+    <!--  v-spacer-->
 </template>
 
 <script>
@@ -108,9 +129,16 @@ export default {
   data: () => ({
     drawer: false,
     drawer_right: false,
-    right: false,
-    left: false,
     mini: false,
+    direction: 'top',
+    fab: false,
+    fling: false,
+    hover: false,
+    tabs: null,
+    bottom: true,
+    left: false,
+    right: false,
+    bottomNav: 3,
     items: [
         {
           pic: 'supervised_user_circle',
@@ -185,8 +213,17 @@ export default {
         { pic: 'book', text: 'User Guide', link: '/guide' },
         { pic: 'power_settings_new', text: 'Sign Out', link: '/sign-out' }
       ]
-    
   }),
+  computed: {
+    color () {
+      switch (this.bottomNav) {
+        case 0: return 'blue-grey'
+        case 1: return 'teal'
+        case 2: return 'brown'
+        case 3: return 'indigo'
+      }
+    }
+  },
   props: {
     source: String
   }
